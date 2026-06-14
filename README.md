@@ -4,6 +4,10 @@
 
 Stable Diffusion / SDXL で、local rollback + rewrite を使った生成比較を行う実験ツールです。
 
+基本的な考え方は、連続した step の denoising で latent が局所的に大きく書き換わっている領域を、局所的な不安定さ・混乱・破綻の前兆として捉えることです。そうした領域が連続して観測されたとき、その周辺だけを rollback し、local rewrite を試みます。
+
+つまり、画像全体をやり直すのではなく、「怪しい場所だけを巻き戻して書き直す」ための実験系です。
+
 同じ初期ノイズから、次の 3 系列を並べて比較できます。
 
 - standard: 通常の denoising
